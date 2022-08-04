@@ -2,30 +2,27 @@
   "name": "rollup-plugin-assemblyscript",
   "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.mjs",
   "keywords": [],
   "author": "Surma <surma@surma.dev>",
   "license": "Apache-2.0",
+  "type": "module",
   "peerDependencies": {
-    "assemblyscript": "*",
-    "as-bind": "*"
+    "assemblyscript": "^0.20.0"
   },
   "devDependencies": {
-    "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
-    "prettier": "^1.19.1",
-    "rollup": "^2.32.1"
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "assemblyscript": "git+https://github.com/blmage/assemblyscript.git",
+    "rollup": "^2.56.3"
   },
   "scripts": {
+    "build": "rollup -c",
+    "prepare": "yarn build",
     "test": "cd test && rollup -c",
-    "test-serve": "npx servez test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "test-serve": "yarn test && npx servez test"
   }
 }
